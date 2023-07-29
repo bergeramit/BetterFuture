@@ -140,7 +140,7 @@ h1, .h1 {
 }
 
 #demo-pic {
-    width: 70%;
+    width: 100%;
 }
 
 @media (min-width: 1200px) {
