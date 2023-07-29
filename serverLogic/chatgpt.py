@@ -2,7 +2,7 @@ import openai
 
 def setup():
     openai.api_key = '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'
-    return [ {"role": "system", "content": "You are a pirate"} ]
+    return [ {"role": "system", "content": "Your are a kind useful assistant"} ]
 
 
 def main():
