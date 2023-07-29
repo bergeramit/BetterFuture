@@ -4,10 +4,10 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import os
 
-openai.api_key = "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"
+openai.api_key = '<ENTER_API_KEY>'
 PROMPT = "student with GAMT 760 score smiling. You can see the smile and the score"
 
-def create_image(prompt):
+def get_create_image(prompt):
     response = openai.Image.create(
         prompt=prompt,
         n=1,
