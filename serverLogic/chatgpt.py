@@ -1,11 +1,11 @@
 import openai
+from settings import API_KEY, CHAT_THEME
 
-openai.api_key = '<>'
-THEME = {"role": "system", "content": "Your are a kind useful assistant"}
+openai.api_key = API_KEY
 
 def get_chat_gpt_response(messages):
     if len(messages) <= 1:
-        messages.insert(0, THEME)
+        messages.insert(0, CHAT_THEME)
 
     chat = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo", messages=messages
@@ -16,7 +16,7 @@ def get_chat_gpt_response(messages):
 
 
 def main():
-    messages = [THEME]
+    messages = [CHAT_THEME]
 
     while True:
         message = input("User: ")

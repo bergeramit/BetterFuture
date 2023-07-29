@@ -3,8 +3,9 @@ import urllib.request
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import os
+from settings import API_KEY
 
-openai.api_key = '<>'
+openai.api_key = API_KEY
 PROMPT = "student with GAMT 760 score smiling. You can see the smile and the score"
 
 def get_create_image(prompt):

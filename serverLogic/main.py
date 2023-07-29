@@ -23,7 +23,6 @@ app.add_middleware(
 @app.post("/generate-text/")
 async def generate_chat(request: Request):
     try:
-        logger.error("Reached here!")
         prompt = await request.json()
 
         if not prompt:
@@ -41,14 +40,13 @@ async def generate_chat(request: Request):
 @app.post("/generate-img/")
 async def generate_img_response(request: Request):
     try:
-        data = await request.json()
-        prompt = data["prompt"]
+        prompt = await request.json()
 
         if not prompt:
             raise ValueError("Prompt cannot be empty.")
 
         # Call the ChatGPT API to generate the response
-        response = await get_create_image(prompt)
+        response = get_create_image(prompt)
 
         return JSONResponse(content=response, status_code=200)
 

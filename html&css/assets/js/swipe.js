@@ -16,7 +16,7 @@
 */
 
 "use strict";
-let messages = []
+let textMessages = []
 // let gptAnswer = d.getElementById("gpt-answer");
 const SERVER_URL = "http://localhost:8000"
 const d = document;
@@ -61,20 +61,21 @@ askChatGPT.addEventListener("submit", (e) => {
     gptAnswer.textContent = "..."
   
     // handle submit
-    messages.push({"role": "user", "content": d.getElementById("ask-chat-gpt-input").value})
+    textMessages.push({"role": "user", "content": d.getElementById("ask-chat-gpt-input").value})
 
     // You can now process the form data or send it to a server using fetch or XMLHttpRequest
     // For example, sending the data to a server using fetch:
 
     fetch(SERVER_URL + "/generate-text/", {
         method: 'POST',
-        body: JSON.stringify(messages)
+        body: JSON.stringify(textMessages)
     })
     .then((response) => response.json())
     .then((data) => {
             // Success
+            textMessages = data
+            console.log(data)
             const responseFromGPT = data[data.length-1].content
-            console.log(responseFromGPT)
             gptAnswer.textContent = responseFromGPT
     })
     .catch(error => {
@@ -88,7 +89,7 @@ askImageAI.addEventListener("submit", (e) => {
     e.preventDefault();
   
     // handle submit
-    const formData = {"request": d.getElementById("ask-img-ai-input").value}
+    const formData = d.getElementById("ask-img-ai-input").value
 
     // You can now process the form data or send it to a server using fetch or XMLHttpRequest
     // For example, sending the data to a server using fetch:
@@ -97,15 +98,11 @@ askImageAI.addEventListener("submit", (e) => {
         method: 'POST',
         body: JSON.stringify(formData)
     })
-    .then(response => {
-        // Handle the server response here
-        if (response.ok) {
-            // Success
-            console.log('Form data submitted successfully!');
-        } else {
-            // Server returned an error
-            console.error('Form data submission failed.');
-        }
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data)
+        const demoPic = d.getElementById("demo-pic")
+        demoPic.src = data
     })
     .catch(error => {
         // Error occurred during the fetch
