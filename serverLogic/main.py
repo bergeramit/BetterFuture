@@ -30,7 +30,7 @@ async def generate_chat(request: Request):
             raise ValueError("Prompt cannot be empty.")
 
         # Call the ChatGPT API to generate the response
-        response = await get_chat_gpt_response(prompt)
+        response = get_chat_gpt_response(prompt)
 
         return JSONResponse(content=response, status_code=200)
 

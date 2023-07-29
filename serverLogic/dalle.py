@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import os
 
-openai.api_key = '<ENTER_API_KEY>'
+openai.api_key = '<>'
 PROMPT = "student with GAMT 760 score smiling. You can see the smile and the score"
 
 def get_create_image(prompt):

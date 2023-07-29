@@ -16,6 +16,8 @@
 */
 
 "use strict";
+let messages = []
+// let gptAnswer = d.getElementById("gpt-answer");
 const SERVER_URL = "http://localhost:8000"
 const d = document;
 d.addEventListener("DOMContentLoaded", function(event) {
@@ -55,26 +57,25 @@ d.addEventListener("DOMContentLoaded", function(event) {
 const askChatGPT = d.getElementById("ask-chat-gpt")
 askChatGPT.addEventListener("submit", (e) => {
     e.preventDefault();
+    let gptAnswer = d.getElementById("gpt-answer")
+    gptAnswer.textContent = "..."
   
     // handle submit
-    const formData = d.getElementById("ask-chat-gpt-input").value
+    messages.push({"role": "user", "content": d.getElementById("ask-chat-gpt-input").value})
 
     // You can now process the form data or send it to a server using fetch or XMLHttpRequest
     // For example, sending the data to a server using fetch:
 
     fetch(SERVER_URL + "/generate-text/", {
         method: 'POST',
-        body: JSON.stringify(formData)
+        body: JSON.stringify(messages)
     })
-    .then(response => {
-        // Handle the server response here
-        if (response.ok) {
+    .then((response) => response.json())
+    .then((data) => {
             // Success
-            console.log('Form data submitted successfully!');
-        } else {
-            // Server returned an error
-            console.error('Form data submission failed.');
-        }
+            const responseFromGPT = data[data.length-1].content
+            console.log(responseFromGPT)
+            gptAnswer.textContent = responseFromGPT
     })
     .catch(error => {
         // Error occurred during the fetch
