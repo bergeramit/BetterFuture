@@ -50,3 +50,63 @@ d.addEventListener("DOMContentLoaded", function(event) {
     d.querySelector('.current-year').textContent = new Date().getFullYear();
 
 });
+
+const askChatGPT = d.getElementById("ask-chat-gpt")
+askChatGPT.addEventListener("submit", (e) => {
+    e.preventDefault();
+  
+    // handle submit
+    const formData = d.getElementById("ask-chat-gpt-input").value
+
+    // You can now process the form data or send it to a server using fetch or XMLHttpRequest
+    // For example, sending the data to a server using fetch:
+
+    fetch('your_server_endpoint', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        // Handle the server response here
+        if (response.ok) {
+            // Success
+            console.log('Form data submitted successfully!');
+        } else {
+            // Server returned an error
+            console.error('Form data submission failed.');
+        }
+    })
+    .catch(error => {
+        // Error occurred during the fetch
+        console.error('Error submitting form data:', error);
+    });
+});
+
+const askImageAI = d.getElementById("ask-img-ai")
+askImageAI.addEventListener("submit", (e) => {
+    e.preventDefault();
+  
+    // handle submit
+    const formData = d.getElementById("ask-img-ai-input").value
+
+    // You can now process the form data or send it to a server using fetch or XMLHttpRequest
+    // For example, sending the data to a server using fetch:
+
+    fetch('your_server_endpoint', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        // Handle the server response here
+        if (response.ok) {
+            // Success
+            console.log('Form data submitted successfully!');
+        } else {
+            // Server returned an error
+            console.error('Form data submission failed.');
+        }
+    })
+    .catch(error => {
+        // Error occurred during the fetch
+        console.error('Error submitting form data:', error);
+    });
+});
